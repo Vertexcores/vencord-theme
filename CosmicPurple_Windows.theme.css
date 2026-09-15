@@ -1,0 +1,271 @@
+/**
+ * @name Cosmic Purple
+ * @author Moe G
+ * @version 1.4.0
+ * @description Dark cosmic-purple glass theme created for Vencord.
+ */
+
+/* Wallpaper is hosted on GitHub so Vencord can load it as an external resource. */
+
+:root {
+  --cosmic-black: #070610;
+  --deep-space: #0d0918;
+  --panel-purple: 21, 16, 37;
+  --primary-purple: #7c3aed;
+  --bright-purple: #9d5cff;
+  --neon-purple: #b77bff;
+  --portal-glow: #d8b4fe;
+  --text-primary: #f4eeff;
+  --text-secondary: #c7b8dc;
+  --text-muted: #8d7ba3;
+  --purple-border: rgba(183, 123, 255, 0.22);
+  --purple-shadow: rgba(124, 58, 237, 0.32);
+  --wallpaper: url("https://raw.githubusercontent.com/Vertexcores/vencord-theme/main/assets/PC_Wallpaper_01_Purple_Cosmic.webp");
+
+  --background-primary: rgba(10, 7, 18, 0.70);
+  --background-secondary: rgba(13, 9, 24, 0.76);
+  --background-secondary-alt: rgba(8, 6, 16, 0.84);
+  --background-tertiary: rgba(7, 5, 14, 0.83);
+  --background-accent: rgba(124, 58, 237, 0.38);
+  --background-floating: rgba(13, 9, 24, 0.94);
+  --background-modifier-hover: rgba(157, 92, 255, 0.12);
+  --background-modifier-active: rgba(157, 92, 255, 0.18);
+  --background-modifier-selected: rgba(124, 58, 237, 0.24);
+  --background-modifier-accent: rgba(183, 123, 255, 0.16);
+  --channeltextarea-background: rgba(18, 12, 32, 0.78);
+  --modal-background: rgba(13, 9, 24, 0.95);
+  --modal-footer-background: rgba(7, 5, 14, 0.92);
+  --bg-base-primary: transparent;
+  --bg-base-secondary: transparent;
+  --bg-base-tertiary: transparent;
+  --bg-surface-overlay: rgba(13, 9, 24, 0.88);
+  --chat-background-default: transparent;
+  --home-background: transparent;
+
+  --text-normal: var(--text-primary);
+  --text-muted: #9786ad;
+  --header-primary: #ffffff;
+  --header-secondary: var(--text-secondary);
+  --interactive-normal: #c1b3d3;
+  --interactive-hover: #f3eaff;
+  --interactive-active: #ffffff;
+  --interactive-muted: #6f617f;
+  --channels-default: #b3a3c7;
+  --channel-icon: #ae9cc3;
+  --brand-500: var(--bright-purple);
+  --brand-560: var(--primary-purple);
+  --control-brand-foreground: var(--portal-glow);
+  --mention-foreground: #e3c8ff;
+  --mention-background: rgba(124, 58, 237, 0.24);
+  --scrollbar-thin-thumb: rgba(183, 123, 255, 0.55);
+  --scrollbar-auto-thumb: rgba(183, 123, 255, 0.48);
+  --scrollbar-auto-track: rgba(7, 6, 16, 0.30);
+}
+
+html {
+  background-color: var(--cosmic-black) !important;
+}
+
+/* The wallpaper now lives directly on the window instead of behind #app-mount. */
+body {
+  background-color: var(--cosmic-black) !important;
+  background-image: linear-gradient(rgba(3, 2, 9, 0.34), rgba(3, 2, 9, 0.34)), var(--wallpaper) !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+#app-mount {
+  background: transparent !important;
+}
+
+/* Allow the wallpaper to show through Discord's main layers. */
+#app-mount [class*="bg_"],
+#app-mount [class*="layers_"],
+#app-mount [class*="layer_"],
+#app-mount [class*="base_"],
+#app-mount [class*="content_"],
+#app-mount [class*="chat_"],
+#app-mount main,
+#app-mount section {
+  background-color: transparent !important;
+}
+
+/* Force Discord's current main surfaces to reveal the wallpaper. */
+#app-mount [class*="app_"],
+#app-mount [class*="appMount_"],
+#app-mount [class*="guilds_"],
+#app-mount [class*="scroller_"],
+#app-mount [class*="sidebarList_"],
+#app-mount [class*="sidebarRegion_"],
+#app-mount [class*="contentRegion_"],
+#app-mount [class*="chatContent_"],
+#app-mount [class*="messagesWrapper_"],
+#app-mount [class*="members_"],
+#app-mount [class*="member_"],
+#app-mount [class*="container_"],
+#app-mount [class*="page_"],
+#app-mount [class*="standardSidebarView_"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Current Discord desktop surfaces (2026 UI). */
+#app-mount [class^="app_"],
+#app-mount [class^="bg_"],
+#app-mount [class^="layers_"],
+#app-mount [class^="layer_"],
+#app-mount [class^="base_"],
+#app-mount [class^="content_"],
+#app-mount [class^="page_"],
+#app-mount [class^="chat_"],
+#app-mount [class^="chatContent_"],
+#app-mount [class^="messagesWrapper_"],
+#app-mount [class^="scrollerContent_"],
+#app-mount [class^="members_"],
+#app-mount [class^="member_"],
+#app-mount [class^="guilds_"],
+#app-mount [class^="sidebarList_"] {
+  background: transparent !important;
+}
+
+/* Semi-transparent columns similar to the supplied reference screenshot. */
+#app-mount [class^="guilds_"],
+#app-mount [class^="sidebarList_"],
+#app-mount [class^="membersWrap_"] {
+  background: rgba(8, 5, 18, 0.44) !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+/* Glass panels: server rail, channels, members and account panel. */
+#app-mount nav,
+#app-mount aside,
+#app-mount [class*="sidebar_"],
+#app-mount [class*="membersWrap_"],
+#app-mount [class*="panels_"],
+#app-mount [class*="container_"][class*="themed_"] {
+  background: rgba(var(--panel-purple), 0.38) !important;
+  border-color: var(--purple-border) !important;
+  backdrop-filter: blur(3px) saturate(110%);
+}
+
+#app-mount [class*="sidebar_"] {
+  border-right: 1px solid var(--purple-border);
+}
+
+#app-mount [class*="membersWrap_"] {
+  border-left: 1px solid var(--purple-border);
+}
+
+#app-mount [class*="panels_"] {
+  border: 1px solid var(--purple-border);
+  box-shadow: 0 0 22px var(--purple-shadow);
+}
+
+/* Header and message composer. */
+#app-mount [class*="title_"],
+#app-mount [class*="subtitleContainer_"] {
+  background: rgba(9, 6, 18, 0.72) !important;
+  border-bottom: 1px solid var(--purple-border);
+  backdrop-filter: blur(12px);
+}
+
+#app-mount [class*="channelTextArea_"] {
+  border: 1px solid rgba(183, 123, 255, 0.28);
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.14);
+}
+
+/* Selected channels and direct messages. */
+#app-mount [class*="modeSelected_"] [class*="link_"],
+#app-mount [class*="interactiveSelected_"],
+#app-mount [class*="selected_"][class*="channel_"] {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.32), rgba(157, 92, 255, 0.10)) !important;
+  box-shadow: inset 3px 0 var(--neon-purple), 0 0 14px rgba(183, 123, 255, 0.17);
+}
+
+/* Mentions, unread markers, links and focus accents. */
+#app-mount [class*="mentioned_"] {
+  background: rgba(124, 58, 237, 0.18) !important;
+  border-left: 3px solid var(--neon-purple);
+}
+
+#app-mount [class*="unread_"] {
+  background-color: var(--portal-glow) !important;
+  box-shadow: 0 0 9px var(--neon-purple);
+}
+
+#app-mount a,
+#app-mount [class*="anchor_"] {
+  color: var(--portal-glow);
+}
+
+#app-mount [class*="numberBadge_"] {
+  background: linear-gradient(135deg, var(--primary-purple), var(--neon-purple)) !important;
+  box-shadow: 0 0 10px var(--purple-shadow);
+}
+
+/* Buttons, switches and progress elements. */
+#app-mount button[class*="lookFilled_"][class*="colorBrand_"],
+#app-mount [class*="slider_"] [class*="barFill_"] {
+  background: linear-gradient(135deg, #6d28d9, #a855f7) !important;
+  box-shadow: 0 0 14px rgba(157, 92, 255, 0.28);
+}
+
+#app-mount button[class*="lookFilled_"][class*="colorBrand_"]:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 20px rgba(183, 123, 255, 0.44);
+}
+
+/* Menus, popouts, profiles and settings cards. */
+#app-mount [class*="menu_"],
+#app-mount [class*="messagesPopoutWrap_"],
+#app-mount [class*="browser_"],
+#app-mount [class*="userPopoutOuter_"],
+#app-mount [class*="root_"][class*="modal_"] {
+  background: rgba(13, 9, 24, 0.93) !important;
+  border: 1px solid rgba(183, 123, 255, 0.28);
+  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.55), 0 0 24px var(--purple-shadow);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+#app-mount [class*="item_"][class*="focused_"],
+#app-mount [class*="item_"]:hover {
+  background-color: rgba(124, 58, 237, 0.25) !important;
+}
+
+/* Inputs and search fields. */
+#app-mount input,
+#app-mount textarea,
+#app-mount [class*="searchBar_"] {
+  color: var(--text-primary) !important;
+}
+
+#app-mount [class*="input_"],
+#app-mount [class*="searchBar_"] [class*="DraftEditor-root"] {
+  background-color: rgba(7, 5, 14, 0.72) !important;
+  border-color: var(--purple-border) !important;
+}
+
+/* Cleaner purple scrollbars. */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(183, 123, 255, 0.48) !important;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(7, 6, 16, 0.24) !important;
+}
+
+/* Optional accessibility: reduce glass blur on lower-end systems. */
+@media (prefers-reduced-transparency: reduce) {
+  #app-mount nav,
+  #app-mount aside,
+  #app-mount [class*="sidebar_"],
+  #app-mount [class*="membersWrap_"],
+  #app-mount [class*="panels_"] {
+    backdrop-filter: none;
+    background: rgba(13, 9, 24, 0.93) !important;
+  }
+}
