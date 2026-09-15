@@ -1,7 +1,7 @@
 /**
  * @name Cosmic Purple
  * @author Moe G
- * @version 1.4.0
+ * @version 1.5.0
  * @description Dark cosmic-purple glass theme created for Vencord.
  */
 
@@ -130,19 +130,27 @@ body {
   background: transparent !important;
 }
 
-/* Semi-transparent columns similar to the supplied reference screenshot. */
+/* Side columns use one light glass layer so the wallpaper remains visible. */
 #app-mount [class^="guilds_"],
-#app-mount [class^="sidebarList_"],
-#app-mount [class^="membersWrap_"] {
-  background: rgba(8, 5, 18, 0.44) !important;
-  backdrop-filter: blur(2px) !important;
+#app-mount [class^="sidebarList_"] {
+  background: rgba(6, 3, 15, 0.20) !important;
+  backdrop-filter: blur(1.5px) saturate(115%) !important;
 }
 
-/* Glass panels: server rail, channels, members and account panel. */
-#app-mount nav,
-#app-mount aside,
-#app-mount [class*="sidebar_"],
-#app-mount [class*="membersWrap_"],
+#app-mount [class^="membersWrap_"] {
+  background: rgba(8, 5, 18, 0.30) !important;
+  backdrop-filter: blur(1.5px) saturate(115%) !important;
+}
+
+/* Remove Discord's extra tint layers inside the server rail and channel list. */
+#app-mount [class*="guilds_"] [class*="scroller_"],
+#app-mount [class*="sidebarList_"] [class*="scroller_"],
+#app-mount [class*="sidebarList_"] [class*="content_"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Glass panels: account panel and themed utility surfaces. */
 #app-mount [class*="panels_"],
 #app-mount [class*="container_"][class*="themed_"] {
   background: rgba(var(--panel-purple), 0.38) !important;
@@ -150,7 +158,8 @@ body {
   backdrop-filter: blur(3px) saturate(110%);
 }
 
-#app-mount [class*="sidebar_"] {
+#app-mount [class*="guilds_"],
+#app-mount [class*="sidebarList_"] {
   border-right: 1px solid var(--purple-border);
 }
 
@@ -175,6 +184,55 @@ body {
   border: 1px solid rgba(183, 123, 255, 0.28);
   border-radius: 12px;
   box-shadow: 0 0 16px rgba(124, 58, 237, 0.14);
+}
+
+/* Cosmic-purple hover feedback for channels, DMs and member names. */
+#app-mount [class*="sidebarList_"] [class*="containerDefault_"] [class*="link_"],
+#app-mount [class*="sidebarList_"] [class*="interactive_"],
+#app-mount [class*="membersWrap_"] [class*="member_"] [class*="layout_"] {
+  border-radius: 7px;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+#app-mount [class*="sidebarList_"] [class*="containerDefault_"]:hover [class*="link_"],
+#app-mount [class*="sidebarList_"] [class*="interactive_"]:hover,
+#app-mount [class*="membersWrap_"] [class*="member_"]:hover [class*="layout_"] {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 40, 217, 0.32),
+    rgba(183, 123, 255, 0.14)
+  ) !important;
+  box-shadow:
+    inset 2px 0 rgba(216, 180, 254, 0.88),
+    0 0 13px rgba(124, 58, 237, 0.20);
+}
+
+#app-mount [class*="sidebarList_"] [class*="containerDefault_"]:hover [class*="name_"],
+#app-mount [class*="sidebarList_"] [class*="containerDefault_"]:hover [class*="icon_"],
+#app-mount [class*="sidebarList_"] [class*="interactive_"]:hover [class*="name_"],
+#app-mount [class*="membersWrap_"] [class*="member_"]:hover [class*="name_"],
+#app-mount [class*="membersWrap_"] [class*="member_"]:hover [class*="username_"] {
+  color: var(--portal-glow) !important;
+  text-shadow: 0 0 8px rgba(183, 123, 255, 0.42);
+}
+
+/* Server icons pick up the same purple glow without changing their artwork. */
+#app-mount [class*="guilds_"] [class*="listItem_"] [class*="wrapper_"] {
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+#app-mount [class*="guilds_"] [class*="listItem_"]:hover [class*="wrapper_"] {
+  filter: drop-shadow(0 0 8px rgba(183, 123, 255, 0.72));
+  transform: translateY(-1px);
+}
+
+#app-mount [class*="guilds_"] [class*="listItem_"]:hover [class*="childWrapper_"] {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #6d28d9, #a855f7) !important;
 }
 
 /* Selected channels and direct messages. */
