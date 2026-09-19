@@ -108,9 +108,8 @@ button:hover,
   border-color: var(--moeg-orange) !important;
 }
 
-/* Bright red/orange focus and selected states. */
-*:focus-visible,
-[class*="selected_"] {
+/* Keep Discord's selected server/channel state clean: no neon box around the active item. */
+*:focus-visible {
   outline-color: var(--moeg-orange) !important;
 }
 
