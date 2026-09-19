@@ -1,0 +1,136 @@
+/*
+ * @name Neon Samurai — MoeG
+ * @author OpenAI
+ * @description Transparent red-samurai Vencord theme with MoeG neon identity and animated hover accents.
+ * @version 1.0.0
+ */
+
+/* Local asset paths are resolved relative to this CSS file when loaded as a local Vencord theme. */
+:root {
+  --moeg-red: #ff2438;
+  --moeg-orange: #ff7a3d;
+  --moeg-ember: #ffb15a;
+  --moeg-ink: rgba(7, 8, 13, .78);
+  --moeg-glass: rgba(12, 15, 22, .58);
+  --moeg-line: rgba(255, 76, 51, .58);
+  --background-image: url("https://raw.githubusercontent.com/Vertexcores/vencord-theme/main/assets/moeg-purple-samurai.png");
+}
+
+/* Atmospheric wallpaper and transparent glass surfaces. */
+body,
+[class*="appMount"],
+[class*="bg_"],
+[class*="layers_"] {
+  background: transparent !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, rgba(5, 6, 10, .82), rgba(32, 9, 8, .42) 52%, rgba(5, 6, 10, .82)),
+    var(--background-image) center / cover no-repeat;
+  filter: saturate(1.12) contrast(1.06);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+  background: radial-gradient(circle at 53% 46%, transparent 0 30%, rgba(0, 0, 0, .42) 100%);
+}
+
+[class*="sidebar_"],
+[class*="panels_"],
+[class*="privateChannels_"] ,
+[class*="peopleColumn_"],
+[class*="nowPlayingColumn_"] {
+  background: rgba(6, 8, 13, .62) !important;
+  backdrop-filter: blur(12px) saturate(1.15);
+}
+
+[class*="content_"],
+[class*="chat_"],
+[class*="membersWrap_"] {
+  background: rgba(9, 11, 17, .34) !important;
+}
+
+/* MoeG identity mark: a compact animated neon badge in the user panel. */
+[class*="panels_"] [class*="avatar_"] {
+  background: url("file:///D:/Download/ChatGPT%20Image%20Sep%206,%202026,%2006_33_58%20PM.png") center / cover no-repeat !important;
+  border: 2px solid var(--moeg-red);
+  box-shadow: 0 0 8px var(--moeg-red), 0 0 20px rgba(255, 36, 56, .55);
+  animation: moeg-pulse 3.4s ease-in-out infinite;
+}
+
+/* Animated colored hover treatment for users, DMs, channels, and servers. */
+[class*="wrapper_"],
+[class*="item_"],
+[class*="channel_"],
+[class*="layout_"],
+[class*="member_"],
+[class*="peopleListItem_"] {
+  transition: color .22s ease, background .22s ease, transform .22s ease, box-shadow .22s ease, filter .22s ease !important;
+}
+
+[class*="wrapper_"]:hover,
+[class*="item_"]:hover,
+[class*="channel_"]:hover,
+[class*="layout_"]:hover,
+[class*="member_"]:hover,
+[class*="peopleListItem_"]:hover {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(255, 36, 56, .28), rgba(255, 122, 61, .1)) !important;
+  box-shadow: inset 3px 0 0 var(--moeg-orange), 0 0 18px rgba(255, 36, 56, .18);
+  transform: translateX(2px);
+}
+
+/* Server icons get a rotating ember ring on hover. */
+[class*="listItem_"]:hover [class*="blobContainer_"],
+[class*="listItem_"]:hover [class*="icon_"],
+[class*="listItem_"]:hover [class*="wrapper_"] {
+  filter: drop-shadow(0 0 6px var(--moeg-orange)) saturate(1.5);
+  animation: moeg-spin-glow 1.8s linear infinite;
+}
+
+[class*="avatar_"]:hover {
+  box-shadow: 0 0 0 2px var(--moeg-orange), 0 0 16px var(--moeg-red) !important;
+  filter: saturate(1.45) brightness(1.16);
+}
+
+button:hover,
+[role="button"]:hover {
+  border-color: var(--moeg-orange) !important;
+}
+
+/* Bright red/orange focus and selected states. */
+*:focus-visible,
+[class*="selected_"] {
+  outline-color: var(--moeg-orange) !important;
+}
+
+@keyframes moeg-pulse {
+  0%, 100% { filter: brightness(.95); box-shadow: 0 0 8px var(--moeg-red), 0 0 20px rgba(255, 36, 56, .45); }
+  50% { filter: brightness(1.18); box-shadow: 0 0 12px var(--moeg-orange), 0 0 30px rgba(255, 122, 61, .58); }
+}
+
+@keyframes moeg-spin-glow {
+  0% { filter: drop-shadow(0 0 4px var(--moeg-red)) saturate(1.2); }
+  50% { filter: drop-shadow(0 0 10px var(--moeg-orange)) saturate(1.7); }
+  100% { filter: drop-shadow(0 0 4px var(--moeg-red)) saturate(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+
+
+
+
